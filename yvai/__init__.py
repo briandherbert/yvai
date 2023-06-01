@@ -5,13 +5,12 @@
 # export FLASK_APP=yvai.py
 # export OPENAI_API_KEY=
 # export PASSARG=
+# export SHEETID=
 # flask run --reload
 
 # if dependencies aren't found, the app may not be running from venv, can verify from the print(sys.path)
 
 from flask import Flask, request, Response
-import requests
-from say_hi import sayHi
 from API_openai import getChatGPTAnswer
 import DB_gsheets
 import sys
