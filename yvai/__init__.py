@@ -10,7 +10,7 @@
 
 # if dependencies aren't found, the app may not be running from venv, can verify from the print(sys.path)
 
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from API_openai import getChatGPTAnswer
 import DB_gsheets
 import sys
@@ -52,7 +52,7 @@ def ask():
     maxTokens = DB_gsheets.getMaxTokens()
     response = getChatGPTAnswer(prompt, max_tokens=maxTokens, system_prompt=systemPrompt)
 
-    return response
+    return {"response": response}, 200
 
 @app.route('/prompteng', methods = ['POST', 'GET'])
 def getPromptEng():
@@ -74,7 +74,7 @@ def topic():
         answer = getChatGPTAnswer(prompt)
     except:
         pass
-    return answer
+    return {"response": answer}, 200
 
 @app.route('/debug', methods = ['POST', 'GET'])
 def debug():
@@ -106,5 +106,5 @@ def debug():
 @app.route('/', methods = ['POST', 'GET'])
 @app.route('/index', methods = ['POST', 'GET'])
 def index():
-    return "Text is returned!"
+    return {"response": "default"}, 200
 
