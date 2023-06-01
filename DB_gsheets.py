@@ -57,5 +57,5 @@ def getTopics(bustCache = DEFAULT_BUST_CACHE):
         i += 1
     return topics
 
-print(getPromptAdd())
+#print(getPromptAdd())
 # print(getTopics())
