@@ -23,6 +23,7 @@ CORS(app)
 PASSARG = "none"
 
 def verify(request):
+    print('Verifying request', file=sys.stderr)
     global PASSARG
 
     try:
@@ -30,6 +31,8 @@ def verify(request):
             PASSARG = os.getenv("PASSARG")
 
         passarg = request.get_json(force=True)["PASSARG"]
+        print(f'Passargs {passarg} {PASSARG}', file=sys.stderr)
+
         return passarg == PASSARG
     except:
         return False
@@ -100,7 +103,7 @@ def debug():
         pass
 
     print("info " + info)
-    return Response(status=200)
+    return {"response": info}, 200
 
 
 @app.route('/', methods = ['POST', 'GET'])
