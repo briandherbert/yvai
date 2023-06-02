@@ -31,7 +31,7 @@ def verify(request):
             PASSARG = os.getenv("PASSARG")
 
         passarg = request.get_json(force=True)["PASSARG"]
-        print(f'Passargs {passarg} {PASSARG}', file=sys.stderr)
+        print(f'Passargs {passarg} {PASSARG}')
 
         return passarg == PASSARG
     except:
